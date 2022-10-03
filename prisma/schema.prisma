@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            Int             @id @default(autoincrement())
+  name          String
+  email         String          @unique
+  password      String
+  exercise      Exercise[]
+  food          Food[]
+  mood          Mood[]
+  numberOfMeals NumberOfMeals[]
+  userWeight    UserWeight[]
+  visions       Visions[]
+  water         Water[]
+
+  @@map("users")
+}
+
+enum diaryType {
+  plans
+  diary
+}
+
+model Diary {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  type      diaryType
+  text      String
+  createdAt DateTime  @default(now())
+
+  @@map("diary")
+}
+
+model ExerciseType {
+  id       Int        @id @default(autoincrement())
+  type     String     @unique
+  exercise Exercise[]
+
+  @@map("exerciseType")
+}
+
+model Exercise {
+  id           Int          @id @default(autoincrement())
+  userId       Int
+  typeId       Int
+  description  String
+  time         String
+  createdAt    DateTime     @default(now())
+  users        Users        @relation(fields: [userId], references: [id])
+  exerciseType ExerciseType @relation(fields: [typeId], references: [id])
+
+  @@map("exercise")
+}
+
+model FoodType {
+  id   Int    @id @default(autoincrement())
+  type String @unique
+  food Food[]
+
+  @@map("foodType")
+}
+
+model Food {
+  id        Int      @id @default(autoincrement())
+  typeId    Int
+  userId    Int
+  content   String
+  createdAt DateTime @default(now())
+
+  types FoodType @relation(fields: [typeId], references: [id])
+  users Users    @relation(fields: [userId], references: [id])
+
+  @@map("food")
+}
+
+enum moodType {
+  awful
+  bad
+  average
+  good
+  happy
+}
+
+model Mood {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  mood      moodType
+  createdAt DateTime @default(now())
+  users     Users    @relation(fields: [userId], references: [id])
+
+  @@map("mood")
+}
+
+model NumberOfMeals {
+  id        Int      @id @default(autoincrement())
+  number    Int
+  userId    Int
+  createdAt DateTime @default(now())
+  users     Users    @relation(fields: [userId], references: [id])
+
+  @@map("numberOfMeals")
+}
+
+model UserWeight {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  weight    Int
+  createdAt DateTime @default(now())
+  users     Users    @relation(fields: [userId], references: [id])
+
+  @@map("userWeight")
+}
+
+model Visions {
+  id     Int    @id @default(autoincrement())
+  userId Int
+  image  String
+  users  Users  @relation(fields: [userId], references: [id])
+
+  @@map("visions")
+}
+
+model Water {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  waterQuantity Int
+  createdAt     DateTime @default(now())
+  users Users @relation(fields: [userId], references: [id])
+
+  @@map("water")
+}

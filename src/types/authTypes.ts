@@ -1,6 +1,6 @@
 interface IUser {
   id: number;
-  name: String;
+  name: string;
   email: string;
   password: string;
   confirmPassword: string;

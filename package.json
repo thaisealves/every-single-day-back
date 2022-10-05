@@ -2,14 +2,13 @@
   "name": "esd-back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && npx prisma migrate deploy",
     "start": "node dist/src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.ts"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,7 +19,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
-    "joi": "^17.6.2"
+    "joi": "^17.6.2",
+    "node": "^18.10.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.5.0",

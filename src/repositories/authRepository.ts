@@ -7,4 +7,12 @@ async function createUserRepository(newUser: CreateUserType) {
   });
 }
 
-export {createUserRepository}
+async function findUserByEmail(email: string) {
+  const user = await prisma.users.findUnique({
+    where: {
+      email,
+    },
+  });
+  return user;
+}
+export { createUserRepository, findUserByEmail };

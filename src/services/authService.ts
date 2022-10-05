@@ -38,4 +38,4 @@ function verifyUser(givenPass: string, originalPass: string) {
     throw { code: "Unauthorized", message: "Data doesn't match!" };
   }
 }
-export { createNewUser };
+export { createNewUser, loginService};

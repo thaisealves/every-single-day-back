@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
-import { createNewUser } from "../services/authService";
-import { CreateUserType, SignUpUserType } from "../types/authTypes";
+import { createNewUser, loginService } from "../services/authService";
+import {
+  CreateUserType,
+  SignInUserType,
+  SignUpUserType,
+} from "../types/authTypes";
 
-export async function singUpController(req: Request, res: Response) {
+async function singUpController(req: Request, res: Response) {
   const newUser: SignUpUserType = req.body;
 
   const formatedUser: CreateUserType = {
@@ -14,3 +18,13 @@ export async function singUpController(req: Request, res: Response) {
 
   res.sendStatus(201);
 }
+
+async function loginController(req: Request, res: Response) {
+  const user: SignInUserType = req.body;
+
+  const token = await loginService(user);
+
+  res.status(200).send(token);
+}
+
+export { loginController, singUpController };

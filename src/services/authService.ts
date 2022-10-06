@@ -29,7 +29,10 @@ async function loginService(user: SignInUserType) {
   }
   verifyUser(user.password, existingUser.password);
 
-  const token = jwt.createToken({ id: existingUser.id });
+  const token = jwt.createToken({
+    id: existingUser.id,
+    name: existingUser.name,
+  });
   return { token };
 }
 
@@ -38,4 +41,4 @@ function verifyUser(givenPass: string, originalPass: string) {
     throw { code: "Unauthorized", message: "Data doesn't match!" };
   }
 }
-export { createNewUser, loginService};
+export { createNewUser, loginService };

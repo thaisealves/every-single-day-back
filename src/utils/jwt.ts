@@ -14,7 +14,7 @@ function createToken(data: object) {
 function verifyToken(data: string) {
   const verified = jwt.verify(data, JWT_SECRET) as IToken;
   if (!verified) throw { code: "Unauthorized", message: "Invalid Token" };
-  return verified.id;
+  return verified;
 }
 
 export default {

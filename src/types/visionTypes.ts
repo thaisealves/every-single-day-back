@@ -4,6 +4,6 @@ interface IVision {
   image: string;
 }
 
-type CreateVisionType = Omit<IVision, "id">;
-
-export { IVision, CreateVisionType };
+type CreateVisionType = Omit<IVision, "id" | "userId">;
+type AddVision = Omit<IVision, "id">;
+export { IVision, CreateVisionType, AddVision };

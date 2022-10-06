@@ -29,8 +29,11 @@ async function loginService(user: SignInUserType) {
   }
   verifyUser(user.password, existingUser.password);
 
-  const token = jwt.createToken({ id: existingUser.id });
-  return { token, name: existingUser.name };
+  const token = jwt.createToken({
+    id: existingUser.id,
+    name: existingUser.name,
+  });
+  return { token };
 }
 
 function verifyUser(givenPass: string, originalPass: string) {

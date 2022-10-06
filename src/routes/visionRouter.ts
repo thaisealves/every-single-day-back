@@ -1,9 +1,12 @@
 import { Router } from "express";
+import {
+  addNewPictureController,
+  getPicturesController,
+} from "../controllers/visionController";
 import schemaValidation from "../middlewares/schemaValidation";
-import { addNewPicture, getPictures } from "../repositories/visionRepository";
 import { visionSchema } from "../schemas/visionSchemas";
 
 const route = Router();
-route.post("/vision", schemaValidation(visionSchema), addNewPicture);
-route.get("/visions", getPictures);
+route.post("/vision", schemaValidation(visionSchema), addNewPictureController);
+route.get("/visions", getPicturesController);
 export default route;

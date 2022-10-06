@@ -15,6 +15,7 @@ export function validateToken(req: Request, res: Response, next: NextFunction) {
   if (!verified) {
     throw { code: "Unauthorized", message: "You must provide a valide token" };
   }
-  res.locals.userId = verified;
+  res.locals.userId = verified.id;
+  res.locals.name = verified.name;
   next();
 }

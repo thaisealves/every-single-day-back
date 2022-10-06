@@ -1,7 +1,7 @@
-import { CreateVisionType } from "../types/visionTypes";
+import { AddVision } from "../types/visionTypes";
 import { prisma } from "../utils/database";
 
-async function addNewPicture(newPic: CreateVisionType) {
+async function addNewPicture(newPic: AddVision) {
   await prisma.visions.create({
     data: newPic,
   });

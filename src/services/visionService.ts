@@ -5,14 +5,14 @@ import {
 } from "../repositories/visionRepository";
 import { CreateVisionType } from "../types/visionTypes";
 
-async function createPictureService(newPic: CreateVisionType) {
-  const findPic = await existingPicture(newPic.userId, newPic.image);
+async function createPictureService(newPic: CreateVisionType, userId: number) {
+  const findPic = await existingPicture(userId, newPic.image);
 
   if (findPic) {
     throw { code: "Conflict", message: "Image already existes for this user" };
   }
 
-  await addNewPicture(newPic);
+  await addNewPicture({ image: newPic.image, userId });
 }
 
 async function getAllPictures(userId: number) {

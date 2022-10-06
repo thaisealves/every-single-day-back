@@ -30,7 +30,7 @@ async function loginService(user: SignInUserType) {
   verifyUser(user.password, existingUser.password);
 
   const token = jwt.createToken({ id: existingUser.id });
-  return { token };
+  return { token, name: existingUser.name };
 }
 
 function verifyUser(givenPass: string, originalPass: string) {
@@ -38,4 +38,4 @@ function verifyUser(givenPass: string, originalPass: string) {
     throw { code: "Unauthorized", message: "Data doesn't match!" };
   }
 }
-export { createNewUser, loginService};
+export { createNewUser, loginService };

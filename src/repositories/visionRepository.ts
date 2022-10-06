@@ -12,4 +12,15 @@ async function getPictures(userId: number) {
   return pictures;
 }
 
-export { addNewPicture, getPictures };
+async function existingPicture(userId: number, image: string) {
+  const picture = await prisma.visions.findUnique({
+    where: {
+      userId_image: {
+        userId,
+        image,
+      },
+    },
+  });
+  return picture;
+}
+export { addNewPicture, getPictures, existingPicture };

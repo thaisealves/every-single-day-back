@@ -96,7 +96,7 @@ model Mood {
   id        Int      @id @default(autoincrement())
   userId    Int
   mood      moodType
-  createdAt String
+  createdAt DateTime @default(now())
   users     Users    @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
@@ -104,22 +104,22 @@ model Mood {
 }
 
 model NumberOfMeals {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   number    Int
   userId    Int
-  createdAt String
-  users     Users  @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  users     Users    @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("numberOfMeals")
 }
 
 model UserWeight {
-  id        Int    @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   userId    Int
   weight    Int
-  createdAt String
-  users     Users  @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  users     Users    @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("userWeight")
@@ -136,11 +136,11 @@ model Visions {
 }
 
 model Water {
-  id            Int    @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   userId        Int
   waterQuantity Int
-  createdAt     String
-  users         Users  @relation(fields: [userId], references: [id])
+  createdAt     DateTime @default(now())
+  users         Users    @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("water")

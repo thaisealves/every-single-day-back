@@ -36,7 +36,7 @@ model Diary {
   userId    Int
   type      diaryType
   text      String
-  createdAt DateTime  @default(now())
+  createdAt String
 
   @@unique([userId, createdAt, type])
   @@map("diary")
@@ -56,7 +56,7 @@ model Exercise {
   typeId       Int
   description  String
   time         String
-  createdAt    DateTime     @default(now())
+  createdAt    String
   users        Users        @relation(fields: [userId], references: [id])
   exerciseType ExerciseType @relation(fields: [typeId], references: [id])
 
@@ -72,11 +72,11 @@ model FoodType {
 }
 
 model Food {
-  id        Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   typeId    Int
   userId    Int
   content   String
-  createdAt DateTime @default(now())
+  createdAt String
 
   types FoodType @relation(fields: [typeId], references: [id])
   users Users    @relation(fields: [userId], references: [id])
@@ -96,7 +96,7 @@ model Mood {
   id        Int      @id @default(autoincrement())
   userId    Int
   mood      moodType
-  createdAt DateTime @default(now())
+  createdAt String
   users     Users    @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
@@ -104,22 +104,22 @@ model Mood {
 }
 
 model NumberOfMeals {
-  id        Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   number    Int
   userId    Int
-  createdAt DateTime @default(now())
-  users     Users    @relation(fields: [userId], references: [id])
+  createdAt String
+  users     Users  @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("numberOfMeals")
 }
 
 model UserWeight {
-  id        Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   userId    Int
   weight    Int
-  createdAt DateTime @default(now())
-  users     Users    @relation(fields: [userId], references: [id])
+  createdAt String
+  users     Users  @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("userWeight")
@@ -136,11 +136,11 @@ model Visions {
 }
 
 model Water {
-  id            Int      @id @default(autoincrement())
+  id            Int    @id @default(autoincrement())
   userId        Int
   waterQuantity Int
-  createdAt     DateTime @default(now())
-  users         Users    @relation(fields: [userId], references: [id])
+  createdAt     String
+  users         Users  @relation(fields: [userId], references: [id])
 
   @@unique([userId, createdAt])
   @@map("water")

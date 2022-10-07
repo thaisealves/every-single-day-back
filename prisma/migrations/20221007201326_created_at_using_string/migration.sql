@@ -1,0 +1,27 @@
+-- AlterTable
+ALTER TABLE "diary" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "exercise" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "food" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "mood" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "numberOfMeals" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "userWeight" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "water" ALTER COLUMN "createdAt" DROP DEFAULT,
+ALTER COLUMN "createdAt" SET DATA TYPE TEXT;

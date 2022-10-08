@@ -16,7 +16,7 @@ async function addMoodController(req: Request, res: Response) {
 async function findMoodController(req: Request, res: Response) {
   const { createdAt } = req.body;
   const userId: number = res.locals.userId;
-  const findMood = findMoodService(userId, createdAt);
+  const findMood = await findMoodService(userId, createdAt);
   res.status(200).send(findMood);
 }
 export { addMoodController, findMoodController };

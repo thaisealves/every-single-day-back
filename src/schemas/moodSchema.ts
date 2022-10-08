@@ -7,7 +7,7 @@ const moodSchema = joi.object({
     .required(),
   createdAt: joi
     .date()
-    .format(["DD/MM/YYYY", "DD-MM-YYYY", "MM/DD/YYYY", "MM-DD-YYYY"]),
+    .format(["DD/MM/YYYY"]),
 });
 
 export { moodSchema };

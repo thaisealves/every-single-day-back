@@ -4,7 +4,7 @@ import {
   findMoodController,
 } from "../controllers/moodController";
 import schemaValidation from "../middlewares/schemaValidation";
-import { moodSchema } from "../schemas/moodSchema";
+import { moodSchema } from "../schemas/moodSchemas";
 
 const route = Router();
 

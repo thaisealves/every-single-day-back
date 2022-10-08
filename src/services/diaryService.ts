@@ -1,4 +1,8 @@
-import { findDiary, postDiary } from "../repositories/diaryRepository";
+import {
+  findDiariesFromDay,
+  findDiary,
+  postDiary,
+} from "../repositories/diaryRepository";
 import { CreateDiaryType } from "../types/diaryTypes";
 
 async function createDiaryService(newDiary: CreateDiaryType) {
@@ -16,4 +20,15 @@ async function createDiaryService(newDiary: CreateDiaryType) {
   await postDiary(newDiary);
 }
 
-export {createDiaryService}
+async function getDayDiaries(createdAt: string, userId: number) {
+  const diaries = await findDiariesFromDay(userId, createdAt);
+  if (!diaries) {
+    throw {
+      code: "NotFound",
+      message: "This user doesn't have texts this day",
+    };
+  }
+  return diaries;
+}
+
+export { createDiaryService, getDayDiaries };

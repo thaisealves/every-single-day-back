@@ -17,6 +17,12 @@ async function addMoodService(mood: CreateMoodType) {
 
 async function findMoodService(userId: number, createdAt: string) {
   const existingMood = await findMood(userId, createdAt);
+  if (!existingMood) {
+    throw {
+      code: "NotFound",
+      message: "There's no mood for this user this day",
+    };
+  }
   return existingMood;
 }
 

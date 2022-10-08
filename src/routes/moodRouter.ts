@@ -9,6 +9,6 @@ import { moodSchema } from "../schemas/moodSchema";
 const route = Router();
 
 route.post("/mood", schemaValidation(moodSchema), addMoodController);
-route.get("/mood", findMoodController);
+route.get("/mood/:day", findMoodController);
 
 export default route;

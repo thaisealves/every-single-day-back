@@ -5,9 +5,7 @@ const moodSchema = joi.object({
     .string()
     .valid(...Object.values(moodType))
     .required(),
-  createdAt: joi
-    .date()
-    .format(["DD/MM/YYYY"]),
+  createdAt: joi.date().format(["DD-MM-YYYY"]),
 });
 
 export { moodSchema };

@@ -1,0 +1,14 @@
+import { Router } from "express";
+import {
+  addMoodController,
+  findMoodController,
+} from "../controllers/moodController";
+import schemaValidation from "../middlewares/schemaValidation";
+import { moodSchema } from "../schemas/moodSchema";
+
+const route = Router();
+
+route.post("/mood", schemaValidation(moodSchema), addMoodController);
+route.get("/mood", findMoodController);
+
+export default route;

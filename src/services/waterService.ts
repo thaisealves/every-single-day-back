@@ -1,3 +1,4 @@
+import { exist } from "joi";
 import {
   findWater,
   postWater,
@@ -17,5 +18,11 @@ async function addWater(newWater: CreateWaterType) {
     await updateWater(body);
   }
 }
-
-export { addWater };
+async function findWaterQuantity(createrAt: string, userId: number) {
+  const existingWater = await findWater(createrAt, userId);
+  if (!existingWater) {
+    throw { code: "NotFound", message: "No water for this user" };
+  }
+  return existingWater;
+}
+export { addWater, findWaterQuantity };

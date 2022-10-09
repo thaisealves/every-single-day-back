@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { addWater } from "../services/waterService";
+import { addWater, findWaterQuantity } from "../services/waterService";
 
 async function addWaterController(req: Request, res: Response) {
   const userId = res.locals.userId;
@@ -11,4 +11,11 @@ async function addWaterController(req: Request, res: Response) {
   res.sendStatus(201);
 }
 
-export { addWaterController };
+async function findWaterController(req: Request, res: Response) {
+  const { day: createdAt } = req.params;
+  const userId = res.locals.userId;
+
+  const waterQuantity = await findWaterQuantity(createdAt, userId);
+  res.status(200).send(waterQuantity);
+}
+export { addWaterController, findWaterController };

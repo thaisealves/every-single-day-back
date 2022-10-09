@@ -22,7 +22,7 @@ async function createDiaryService(newDiary: CreateDiaryType) {
 
 async function getDayDiaries(createdAt: string, userId: number) {
   const diaries = await findDiariesFromDay(userId, createdAt);
-  if (!diaries) {
+  if (!diaries.length) {
     throw {
       code: "NotFound",
       message: "This user doesn't have texts this day",

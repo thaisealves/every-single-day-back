@@ -7,6 +7,7 @@
     "build": "tsc && npx prisma migrate deploy",
     "start": "node dist/src/server.js",
     "test": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test jest -- -i --coverage --testPathPattern=test/integration --no-cache",
+    "test:unit": "dotenv -e .env.test jest -- -i --coverage --testPathPattern=test/units",
     "dev": "nodemon src/server.ts"
   },
   "keywords": [],

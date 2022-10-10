@@ -3,7 +3,6 @@ import express from "express";
 import "express-async-errors";
 import route from "./routes/routesIndex";
 import errorHandler from "./middlewares/errorHandler";
-
 const app = express();
 
 app.use(express.json());

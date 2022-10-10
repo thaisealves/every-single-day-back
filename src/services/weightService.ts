@@ -21,7 +21,7 @@ async function postWeightService(newWeight: CreateWeightType) {
 
 async function findWeightService(userId: number) {
   const weight = await findLastWeigth(userId);
-  if (!weight) {
+  if (!weight.length) {
     throw {
       code: "NotFound",
       message: "Theres no weight for this user",

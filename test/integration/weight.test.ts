@@ -5,48 +5,48 @@ import { prisma } from "../../src/utils/database";
 import { tokenFactory } from "../factories/tokenFactory";
 
 beforeEach(async () => {
-  await prisma.$executeRaw`TRUNCATE TABLE "water" CASCADE`;
+  await prisma.$executeRaw`TRUNCATE TABLE "userWeight" CASCADE`;
 });
-describe("Testing /POST on water", () => {
+describe("Testing /POST on weight", () => {
   it("Must return 201 if the body is correct", async () => {
     const token = await tokenFactory();
     const body = {
       createdAt: "22-09-2011",
-      waterQuantity: faker.datatype.number(5),
+      weight: faker.datatype.number(100),
     };
 
     const creating = await supertest(app)
-      .post("/water")
+      .post("/weight")
       .send(body)
       .set({ Authorization: `Bearer ${token.body.token}` });
 
     expect(creating.status).toBe(201);
   });
 });
-describe("Testing /GET on water/:day", () => {
-  it("Must return 200 and an object of with water information", async () => {
+describe("Testing /GET on weight", () => {
+  it("Must return 200 and an array of weight, with length == 1", async () => {
     const token = await tokenFactory();
     const body = {
       createdAt: "22-09-2011",
-      waterQuantity: faker.datatype.number(5),
+      weight: faker.datatype.number(100),
     };
     await supertest(app)
-      .post("/water")
+      .post("/weight")
       .send(body)
       .set({ Authorization: `Bearer ${token.body.token}` });
     const getting = await supertest(app)
-      .get(`/water/${body.createdAt}`)
+      .get(`/weight`)
       .send()
       .set({ Authorization: `Bearer ${token.body.token}` });
     expect(getting.status).toBe(200);
-    expect(getting.body).toBeInstanceOf(Object);
-    expect(getting.body).toHaveProperty("waterQuantity");
+    expect(getting.body).toBeInstanceOf(Array);
+    expect(getting.body.length).toEqual(1);
   });
-  it("Must return 404 if there's no water for user that day", async () => {
+  it("Must return 404 if there's no weight for user", async () => {
     const token = await tokenFactory();
 
     const getting = await supertest(app)
-      .get("/water/22-09-2011")
+      .get("/weight")
       .send()
       .set({ Authorization: `Bearer ${token.body.token}` });
 

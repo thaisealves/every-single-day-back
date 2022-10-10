@@ -25,7 +25,7 @@ async function loginService(user: SignInUserType) {
   const existingUser = await findUserByEmail(user.email);
 
   if (!existingUser) {
-    throw { code: "Conflict", message: "User doesn't exists" };
+    throw { code: "NotFound", message: "User doesn't exists" };
   }
   verifyUser(user.password, existingUser.password);
 

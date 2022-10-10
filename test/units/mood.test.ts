@@ -26,7 +26,7 @@ describe("Testing to add a mood", () => {
     expect(moodRepository.findMood).toBeCalled();
     expect(moodRepository.addMoodRepository).toBeCalled();
   });
-  it("Adding a mood if there's no mood for the day", async () => {
+  it("Updatind the mood if there already a mood for the day", async () => {
     const newMood: CreateMoodType = {
       userId: faker.datatype.number(10),
       createdAt: "22-10-2022",

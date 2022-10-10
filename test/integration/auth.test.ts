@@ -18,7 +18,7 @@ describe("Testing /POST on signup", () => {
     expect(creating.status).toBe(201);
     expect(userCreated).not.toBeNull;
   });
-  it("Must return 422 when the body is incorrect", async () => {
+  it("Must return 422 when the confirm password is incorrect", async () => {
     const user = newUser();
     const formatedUser = {
       ...user,
@@ -70,8 +70,12 @@ describe("Testing /POST on login", () => {
       email: user.email,
       password: faker.internet.password(),
     };
+    const existingUser = await prisma.users.findUnique({
+      where: { email: user.email },
+    });
     const loggedIn = await supertest(app).post("/login").send(loginUser);
     expect(loggedIn.status).toBe(404);
+    expect(existingUser).toBeNull;
   });
 });
 afterAll(async () => {

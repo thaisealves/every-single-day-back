@@ -1,4 +1,4 @@
-import { CreateNumberOfMealsType } from "../types/foodTypes";
+import { CreateFoodType, CreateNumberOfMealsType } from "../types/foodTypes";
 import { prisma } from "../utils/database";
 
 async function addNumberOfMeals(meal: CreateNumberOfMealsType) {
@@ -24,4 +24,21 @@ async function updateNumberOfMeals(meal: CreateNumberOfMealsType) {
     data: { number: meal.number },
   });
 }
-export { addNumberOfMeals, findNumberOfMeals, updateNumberOfMeals };
+
+async function addFood(food: CreateFoodType) {
+  await prisma.food.create({ data: food });
+}
+
+async function findFoods(userId: number, createdAt: string) {
+  const userFoods = await prisma.food.findMany({
+    where: { userId, createdAt },
+  });
+  return userFoods;
+}
+export {
+  addNumberOfMeals,
+  findNumberOfMeals,
+  updateNumberOfMeals,
+  addFood,
+  findFoods,
+};

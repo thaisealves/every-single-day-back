@@ -7,7 +7,7 @@ interface INumberOfMeals {
 
 interface IFood {
   id: number;
-  typeId: number;
+  type: string;
   userId: number;
   content: string;
   createdAt: string;

@@ -1,9 +1,11 @@
 import {
+  addFood,
   addNumberOfMeals,
+  findFoods,
   findNumberOfMeals,
   updateNumberOfMeals,
 } from "../repositories/foodRepository";
-import { CreateNumberOfMealsType } from "../types/foodTypes";
+import { CreateFoodType, CreateNumberOfMealsType } from "../types/foodTypes";
 
 async function addNumberOfMealsService(meal: CreateNumberOfMealsType) {
   const existingNumber = await findNumberOfMeals(meal.userId, meal.createdAt);
@@ -22,4 +24,22 @@ async function findNumberOfMealsService(userId: number, createdAt: string) {
   return existingNumber;
 }
 
-export { findNumberOfMealsService, addNumberOfMealsService };
+async function addingFood(food: CreateFoodType) {
+  await addFood(food);
+}
+async function findUsersFood(userId: number, createdAt: string) {
+  const foodsFound = await findFoods(userId, createdAt);
+  if (!foodsFound.length) {
+    throw {
+      code: "NotFound",
+      message: "There's no food for this user this day",
+    };
+  }
+  return foodsFound;
+}
+export {
+  findNumberOfMealsService,
+  addNumberOfMealsService,
+  addingFood,
+  findUsersFood,
+};

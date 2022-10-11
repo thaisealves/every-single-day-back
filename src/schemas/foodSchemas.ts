@@ -3,5 +3,9 @@ const numberOfMealsSchema = joi.object({
   number: joi.number().required(),
   createdAt: joi.date().format(["DD-MM-YYYY"]),
 });
-
-export { numberOfMealsSchema };
+const foodSchema = joi.object({
+  type: joi.string().required(),
+  createdAt: joi.date().format(["DD-MM-YYYY"]),
+  content: joi.string().required(),
+});
+export { numberOfMealsSchema, foodSchema };

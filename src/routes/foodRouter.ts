@@ -1,10 +1,12 @@
 import { Router } from "express";
 import {
+  addFoodController,
   addNumberOfMealsController,
+  findFoodsController,
   findNumberOfMealsController,
 } from "../controllers/foodController";
 import schemaValidation from "../middlewares/schemaValidation";
-import { numberOfMealsSchema } from "../schemas/foodSchemas";
+import { foodSchema, numberOfMealsSchema } from "../schemas/foodSchemas";
 
 const route = Router();
 
@@ -15,4 +17,7 @@ route.post(
 );
 route.get("/meals/:day", findNumberOfMealsController);
 
-export default route
+route.post("/food", schemaValidation(foodSchema), addFoodController);
+route.get("/food/:day", findFoodsController);
+
+export default route;

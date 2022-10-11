@@ -8,7 +8,7 @@ import waterRouter from "./waterRouter";
 import weightRouter from "./weightRouter";
 import e2eRouter from "./e2eRouter";
 import dotenv from "dotenv";
-
+import foodRouter from "./foodRouter";
 dotenv.config();
 const route = Router();
 
@@ -22,4 +22,5 @@ route.use(moodRouter);
 route.use(diaryRouter);
 route.use(waterRouter);
 route.use(weightRouter);
+route.use(foodRouter);
 export default route;

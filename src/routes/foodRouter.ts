@@ -15,7 +15,7 @@ route.post(
   schemaValidation(numberOfMealsSchema),
   addNumberOfMealsController
 );
-route.get("/meals/:day", findNumberOfMealsController);
+route.get("/meals", findNumberOfMealsController);
 
 route.post("/food", schemaValidation(foodSchema), addFoodController);
 route.get("/food/:day", findFoodsController);

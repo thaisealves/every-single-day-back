@@ -18,9 +18,8 @@ async function addNumberOfMealsController(req: Request, res: Response) {
 }
 async function findNumberOfMealsController(req: Request, res: Response) {
   const userId: number = res.locals.userId;
-  const { day: createdAt } = req.params;
 
-  const existingNumber = await findNumberOfMealsService(userId, createdAt);
+  const existingNumber = await findNumberOfMealsService(userId);
   res.status(200).send(existingNumber);
 }
 

@@ -3,6 +3,7 @@ import {
   addNumberOfMeals,
   findFoods,
   findNumberOfMeals,
+  findUniqueNumber,
   updateNumberOfMeals,
 } from "../repositories/foodRepository";
 import { CreateFoodType, CreateNumberOfMealsType } from "../types/foodTypes";
@@ -16,8 +17,8 @@ async function addNumberOfMealsService(meal: CreateNumberOfMealsType) {
   }
 }
 
-async function findNumberOfMealsService(userId: number, createdAt: string) {
-  const existingNumber = await findNumberOfMeals(userId, createdAt);
+async function findNumberOfMealsService(userId: number) {
+  const existingNumber = await findUniqueNumber(userId);
   if (!existingNumber) {
     throw { code: "NotFound", message: "No number of meals for user" };
   }

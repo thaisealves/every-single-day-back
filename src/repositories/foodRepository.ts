@@ -16,6 +16,15 @@ async function findNumberOfMeals(userId: number, createdAt: string) {
   return existingNumber;
 }
 
+async function findUniqueNumber(userId: number) {
+  const existingNumber = await prisma.numberOfMeals.findMany({
+    where: { userId },
+    orderBy: { createdAt: "desc" },
+    take: 1,
+  });
+  return existingNumber;
+}
+
 async function updateNumberOfMeals(meal: CreateNumberOfMealsType) {
   await prisma.numberOfMeals.update({
     where: {
@@ -41,4 +50,5 @@ export {
   updateNumberOfMeals,
   addFood,
   findFoods,
+  findUniqueNumber,
 };

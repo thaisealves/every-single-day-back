@@ -8,7 +8,7 @@
 <img src="https://raw.githubusercontent.com/thaisealves/every-single-day-front/main/src/assets/images/target.png?raw=true" height="200px" alt="1%ESD" title="1%ESD"/>
 
 </div>
-This is a project designed and developed by me. The idea is to have the user to develop yourself, doing habits that I consider healthy, like drinking the correct amount of water, having plans and dream and making it easy to see them, some place the user can keep on track on his habits in a way to see its improvement a litte bit every single day.
+This is a project designed and developed by me. The idea is to have the user to improve himself, doing habits that I consider healthy, like drinking the correct amount of water, having a vision board to see his future plans. It's a place the user can keep on track on his habits in a way to see his improvement a litte bit every single day.
 
 <div align="center">
 
